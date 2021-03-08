@@ -10,12 +10,14 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "next": "latest",
+    "next-redux-wrapper": "^6.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5"
   },
   "devDependencies": {
+    "@types/next-redux-wrapper": "^3.0.0",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",

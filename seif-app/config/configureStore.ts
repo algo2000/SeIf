@@ -1,13 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import counterSlice from '../modules/counter/counterSlice';
+import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
+import counterSlice, { initialState as ICounter } from '../features/counter/counterSlice';
 
-const store = configureStore({
-  reducer: {
-    counter: counterSlice,
-  }
+const rootReducer = combineReducers({
+  counter: counterSlice,
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+const preloadedState = () => {
+  return { counter: ICounter };
+};
+
+const store = () => {
+  return configureStore({
+    reducer: rootReducer,
+    devTools: process.env.NODE_ENV !== 'production',
+    preloadedState: preloadedState(),
+  });
+};
+
+export type StoreState = ReturnType<typeof preloadedState>;
+
+export type ReduxStore = Store<StoreState>;
+
+export default store;
