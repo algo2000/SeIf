@@ -1,4 +1,6 @@
+import React from "react";
 import { useDispatch } from "react-redux";
+import { NegativeButton, PositiveButton } from "../../components/button/style";
 import { decrement, decrementByAmount, increment, incrementByAmount, useCounterState } from "./counterSlice";
 
 export const Counter = () => {
@@ -7,11 +9,11 @@ export const Counter = () => {
   
   return (
     <>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
+      <PositiveButton onClick={() => dispatch(increment())}>Increment</PositiveButton>
+      <NegativeButton onClick={() => dispatch(decrement())}>Decrement</NegativeButton>
       <br/>
-      <button onClick={() => dispatch(incrementByAmount({value : 10}))}>IncrementByAmount</button>
-      <button onClick={() => dispatch(decrementByAmount({value : 10}))}>DecrementByAmount</button>
+      <PositiveButton onClick={() => dispatch(incrementByAmount({value : 10}))}>IncrementByAmount</PositiveButton>
+      <NegativeButton onClick={() => dispatch(decrementByAmount({value : 10}))}>DecrementByAmount</NegativeButton>
       <p>값 : {state.value}</p>
     </>
   );
