@@ -9,24 +9,11 @@ const Title = styled.h1`
   font-size: 50px;
 `
 
-const Circle = styled.div`
-  width: 5rem;
-  height: 5rem;
-  background: black;
-  border-radius: 50%;
-`;
-
 const IndexPage = () => {
   return (
   <Layout title="Home | Next.js + TypeScript Example">
     <h1>Hello Next.js 👋</h1>
     <Title>abc</Title>
-    <Circle />
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
     <Counter/>
   </Layout>
 )}
