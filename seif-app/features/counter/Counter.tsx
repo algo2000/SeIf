@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { NegativeButton, PositiveButton } from "../../components/button/style";
+import { DefaultButton } from "../../components/button/style";
 import { decrement, decrementByAmount, increment, incrementByAmount, useCounterState } from "./counterSlice";
 
 export const Counter = () => {
@@ -9,11 +9,11 @@ export const Counter = () => {
   
   return (
     <>
-      <PositiveButton onClick={() => dispatch(increment())}>Increment</PositiveButton>
-      <NegativeButton onClick={() => dispatch(decrement())}>Decrement</NegativeButton>
+      <DefaultButton ver="positive" onClick={() => dispatch(increment())}>Increment</DefaultButton>
+      <DefaultButton ver="negative" onClick={() => dispatch(decrement())}>Decrement</DefaultButton>
       <br/>
-      <PositiveButton onClick={() => dispatch(incrementByAmount({value : 10}))}>IncrementByAmount</PositiveButton>
-      <NegativeButton onClick={() => dispatch(decrementByAmount({value : 10}))}>DecrementByAmount</NegativeButton>
+      <DefaultButton ver="positive" onClick={() => dispatch(incrementByAmount({value : 10}))}>IncrementByAmount</DefaultButton>
+      <DefaultButton ver="negative" onClick={() => dispatch(decrementByAmount({value : 10}))}>DecrementByAmount</DefaultButton>
       <p>값 : {state.value}</p>
     </>
   );
