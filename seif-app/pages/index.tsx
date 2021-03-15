@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import { Counter } from '../features/counter/Counter'
+import { TestSlick } from '../features/slick/TestSlick'
 
 
 const Title = styled.h1`
@@ -15,6 +15,7 @@ const IndexPage = () => {
     <h1>Hello Next.js 👋</h1>
     <Title>abc</Title>
     <Counter/>
+    <TestSlick/>
   </Layout>
 )}
 
