@@ -1,46 +1,40 @@
 import React from 'react';
 import Slider from "react-slick";
 import styled from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const TestSlick = () => {
 
   const StyledSlider = styled(Slider)`
-  .slick-slide div{
-    outline: none;;
-    height: 300px;
-    background-color: blue;
+
+  .slick-slide {
+    height: 30vh;
+    background: #2196f3;
   }
 `;
 
   const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      slidesToScroll: 1,
   };
 
   return (
       <div>
         <h2> Single Item</h2>
         <StyledSlider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+          <div><div className="slide-0"><h3>Graph 1</h3></div></div>
+          <div><div className="slide-1"><h3>Graph 2</h3></div></div>
+          <div><div className="slide-2"><h3>Graph 3</h3></div></div>
+          <div><div className="slide-3"><h3>Set Up</h3></div></div>
+        </StyledSlider>
+        <StyledSlider {...settings}>
+          <div><div className="slide-0"><h3>Graph 1</h3></div></div>
+          <div><div className="slide-1"><h3>Graph 2</h3></div></div>
+          <div><div className="slide-2"><h3>Graph 3</h3></div></div>
+          <div><div className="slide-3"><h3>Set Up</h3></div></div>
         </StyledSlider>
       </div>
   );
