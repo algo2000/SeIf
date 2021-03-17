@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
+import { Counter } from '../features/counter/Counter'
 
 const AboutPage = () => (
   <Layout title="About | Next.js + TypeScript Example">
@@ -7,7 +8,7 @@ const AboutPage = () => (
     <p>This is the about page</p>
     <p>
       <Link href="/">
-        <a>Go home</a>
+        <Counter/>
       </Link>
     </p>
   </Layout>

@@ -16,6 +16,8 @@ const IndexPage = () => {
     <Title>abc</Title>
     <Counter/>
     <TestSlick/>
+    <TestSlick/>
+    <Counter/>
   </Layout>
 )}
 
