@@ -23,7 +23,7 @@ const Textbox = () => {
   }
 
   const InputStyle = styled.input<focusType>`
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     outline: none;
     border: none;
     border-radius: 4px;
