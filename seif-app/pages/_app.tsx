@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
-import store from "../config/configureStore";
+import store, { wrapper } from "../config/configureStore";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -11,4 +11,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);;
