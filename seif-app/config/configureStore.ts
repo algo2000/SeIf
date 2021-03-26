@@ -22,8 +22,7 @@ export const wrapper = createWrapper(store, {
   debug: process.env.NODE_ENV !== 'production',
 });
 
-export type StoreState = ReturnType<typeof preloadedState>;
-
-export type ReduxStore = Store<StoreState>;
+// export type StoreState = ReturnType<typeof preloadedState>;
+// export type ReduxStore = Store<StoreState>;
 
 export default store;
