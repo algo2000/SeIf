@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FocusEventHandler, useState } from "react";
+import { FocusEventHandler, useState } from "react";
 import styled from "styled-components";
 
 type InputStyleType = {
