@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import Layout from '../components/Layout'
 import Input from '../components/textbox/Input'
 import Touch from '../components/textbox/Touch'
 import Textbox from '../components/textbox/Textbox'
 import { Counter } from '../features/counter/Counter'
 import { TestSlick } from '../features/slick/TestSlick'
+import Head from 'next/head'
 
 const IndexPage = () => {
   const [value, setValue] = useState<string>("");
@@ -28,7 +29,9 @@ const IndexPage = () => {
     <br/><br/><br/>
     <Counter/>
     <TestSlick/>
-    <Touch/>
+    <Touch>
+      <Counter/>
+    </Touch>
   </Layout>
 )}
 

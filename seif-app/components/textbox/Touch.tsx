@@ -1,55 +1,94 @@
-import { RefObject, useEffect, useRef, useState } from "react";
+import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-type TouchState = {
-  start : String,
-  move : String,
-  end : String
+type PosXY = {
+  x : Number,
+  y : Number,
 }
 
-const TouchSpace = styled.div`
-  width: 300px;
-  height: 200px;
+type TouchState = {
+  start : PosXY,
+  move : PosXY,
+  end : PosXY,
+  isTouch: Boolean,
+}
+
+type TouchSpaceType = {
+  left: number;
+  isTouch: Boolean;
+};
+
+const TouchSpace = styled.div<TouchSpaceType>`
+  width: 100%;
+  height: 100%;
   background-color: blue;
+  position: absolute;
+  left: ${props => props.left}px;
+  top: 0;
+  transition: all ${props => props.isTouch ? '0.05s' : '0.5s ease-in-out'};
+  z-index:0;
 `;
 
-const Touch = () => {
+const Temp = styled.div`
+  overflow:hidden;
+`;
+
+const eventToPos = (e: TouchEvent): PosXY  => {
+  return {x : Number(e.touches[0]?.clientX), y : Number(e.touches[0]?.clientY)}
+}
+
+type Props = {
+  children?: ReactNode
+}
+
+const Touch = ({children}: Props) => {
 
   const touchSpace:RefObject<HTMLDivElement>= useRef(null);
 
   const [touch, setTouch] = useState<TouchState>({
-    start : 'start',
-    move : 'move',
-    end : 'end',
+    start : {y : Number(touchSpace.current?.offsetTop), x : Number(touchSpace.current?.offsetLeft)},
+    move : {y : Number(touchSpace.current?.offsetTop), x : Number(touchSpace.current?.offsetLeft)},
+    end : {y : Number(touchSpace.current?.offsetTop), x : Number(touchSpace.current?.offsetLeft)},
+    isTouch : false,
   });
+
+  const initPos:PosXY = {
+    x: Number(touchSpace.current?.offsetLeft),
+    y: Number(touchSpace.current?.offsetTop),
+  }
+
+  const [left, setLeft] = useState<Number>(0);
 
   useEffect(() => {
     const element = touchSpace.current;
-    
+
     const handleTouchStart = (e: TouchEvent) => {
-      console.log('Start');
-      console.log(e);
+
       setTouch({
         ...touch,
-        start : e.touches[0].clientX.toFixed(3)+ ", " + e.touches[0].clientY.toFixed(3)
+        start : eventToPos(e),
+        isTouch : true,
       });
     };
     
     const handleTouchMove = (e: TouchEvent) => {
-      console.log('Move');
+      let pos : Number = Number(e.touches[0]?.clientX) - Number(touch.start.x);
+      console.log(pos);
+      setLeft(Number(pos));
+
       setTouch({
         ...touch,
-        move : e.touches[0].clientX.toFixed(3)+ ", " + e.touches[0].clientY.toFixed(3)
+        move : eventToPos(e),
       });
     };
     
     const handleTouchEnd = (e: TouchEvent) => {
-      console.log('End');
-      console.log(e);
       setTouch({
         ...touch,
-        end : e.changedTouches[0].clientX.toFixed(3)+ ", " + e.changedTouches[0].clientY.toFixed(3)
+        end : eventToPos(e),
+        isTouch : false,
       });
+      setLeft(0);
     };
     element?.addEventListener('touchstart', handleTouchStart);
     element?.addEventListener('touchmove', handleTouchMove);
@@ -59,15 +98,19 @@ const Touch = () => {
       element?.removeEventListener('touchmove', handleTouchMove);
       element?.removeEventListener('touchend', handleTouchEnd);
     };
-}, [])
+}, [touch,left])
 
   return (
     <>
-      <TouchSpace ref={touchSpace}>
-        <a>start : {touch.start}</a><br/>
-        <a>move : {touch.move}</a><br/>
-        <a>end : {touch.end}</a><br/>
-      </TouchSpace>
+      <Temp>
+        <TouchSpace left={Number(left)} isTouch={touch.isTouch} ref={touchSpace}>
+          <a>start : {touch.start.x.toFixed(3) + ',' + touch.start.y.toFixed(3)}</a><br/>
+          <a>move : {touch.move.x.toFixed(3) + ',' + touch.move.y.toFixed(3)}</a><br/>
+          <a>end : {touch.end.x.toFixed(3) + ',' + touch.end.y.toFixed(3)}</a><br/>
+          <a>isTouch : {String(touch.isTouch)}</a><br/>
+          {children}
+        </TouchSpace>
+      </Temp>
     </>
   );
 }

@@ -1,10 +1,20 @@
 import { AppProps } from "next/app";
 import React from "react";
+import { createGlobalStyle } from "styled-components";
 import { wrapper } from "../config/configureStore";
+
+const GlobalStyle = createGlobalStyle`
+  body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+`;
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
+      <GlobalStyle/>
       <Component {...pageProps} />
     </>
     //

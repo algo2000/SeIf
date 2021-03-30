@@ -19,7 +19,7 @@ const InputContainer = styled.div<InputStyleType>`
     padding: 12px 3px 12px 15px;
     font-size: 16px;
     transition: all 0.2s ease;
-    z-index: 500;
+    z-index: -1;
   }
   & > label {
     color: #757575;
@@ -27,7 +27,7 @@ const InputContainer = styled.div<InputStyleType>`
     top: 15px;
     left: 15px;
     transition: all 0.2s ease;
-    z-index: 500;
+    z-index: -1;
 
     ${props => props.focused && `
       font-size: 13px;
