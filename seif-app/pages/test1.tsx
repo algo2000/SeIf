@@ -1,9 +1,10 @@
 import { Badge, BottomNavigation, BottomNavigationAction, Button, Fade, makeStyles, Menu, MenuItem, StylesProvider } from "@material-ui/core";
 import MailIcon from '@material-ui/icons/Mail';
-import FolderIcon from '@material-ui/icons/Folder';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PersonIcon from '@material-ui/icons/Person';
+import HomeIcon from '@material-ui/icons/Home';
+import NotesIcon from '@material-ui/icons/Notes';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import AddIcon from '@material-ui/icons/Add';
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 
@@ -38,23 +39,48 @@ const Test1Page = () => {
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (event: React.MouseEvent<HTMLElement>) => {
-    setBtnText(String(event.currentTarget.textContent));
+    if(String(event.currentTarget.textContent) === '') {
+      setBtnText(btnText)
+    }
+    else
+    {
+      setBtnText(String(event.currentTarget.textContent)); 
+    }
     setAnchorEl(null);
   };
 
+  const HeaderDesign = styled.div`
+    width: 100%;
+    height: 250px;
+    background-color: #ffa12d;
+  `;
+
+  const TitleButton = styled(Button)`
+    color: white;
+    float: left;
+    margin: 20px;
+    font-size: 16pt;
+  `;
+
+  const IitleBadge = styled(MailIcon)`
+    fill: white;
+  `;
+  const TitleParentBadge = styled(Badge)`
+    float: right;
+    margin: 20px;
+  `;
 
   return (
     <>
       <StylesProvider injectFirst>
-        <div>
-          <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
+        <HeaderDesign>
+          <TitleButton aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
             {btnText}
-          </Button>
+          </TitleButton>
           <Menu
             id="fade-menu"
             anchorEl={anchorEl}
@@ -68,15 +94,17 @@ const Test1Page = () => {
             <MenuItem onClick={handleClose}>Close</MenuItem>
           </Menu>
         
-          <Badge badgeContent={4} color="primary">
-            <MailIcon />
-          </Badge>
-        </div>
+          <TitleParentBadge badgeContent={4} color="secondary">
+            <IitleBadge />
+          </TitleParentBadge>
+        </HeaderDesign>
+
         <MyNavigation value={value} onChange={handleChange}>
-          <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-          <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+          <BottomNavigationAction label="Home" value="recents" icon={<HomeIcon />} />
+          <BottomNavigationAction label="Course" value="course" icon={<NotesIcon />} />
+          <BottomNavigationAction label="List" value="list" icon={<AssignmentIcon />} />
+          <BottomNavigationAction label="My" value="my" icon={<PersonIcon />} />
+          <BottomNavigationAction label="Add" value="add" icon={<AddIcon />} />
         </MyNavigation>
       
       </StylesProvider>
