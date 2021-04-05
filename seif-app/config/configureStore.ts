@@ -1,7 +1,6 @@
-import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import counterSlice, { initialState as ICounter } from '../features/counter/counterSlice';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
   counter: counterSlice,

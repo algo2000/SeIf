@@ -23,7 +23,8 @@ const TouchSpace = styled.div<TouchSpaceType>`
   height: 100%;
   background-color: blue;
   position: absolute;
-  left: ${props => props.left}px;
+  /* left: ${props => props.left}px; */
+  transform:translateX(${props => props.left -8}px);
   top: 0;
   transition: all ${props => props.isTouch ? '0.05s' : '0.5s ease-in-out'};
   z-index:0;
@@ -67,7 +68,7 @@ const Touch = ({children}: Props) => {
     
     const handleTouchMove = (e: TouchEvent) => {
       let pos : number = e.touches[0]?.clientX - touch.start.x;
-      setLeft(pos);
+      setLeft(pos > 0 ? 0 : pos);
 
       setTouch({
         ...touch,
@@ -81,7 +82,15 @@ const Touch = ({children}: Props) => {
         end : eventToPos(e),
         isTouch : false,
       });
-      setLeft(0);
+      
+      if(screen.width/2 <= (left*-1))
+      {
+        setLeft(-1 * screen.width)
+      }
+      else
+      {
+        setLeft(0);
+      }
     };
     element?.addEventListener('touchstart', handleTouchStart);
     element?.addEventListener('touchmove', handleTouchMove);
