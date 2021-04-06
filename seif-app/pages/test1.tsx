@@ -1,4 +1,4 @@
-import { Badge, BottomNavigation, BottomNavigationAction, Button, Fade, makeStyles, Menu, MenuItem, StylesProvider } from "@material-ui/core";
+import { Badge, BottomNavigation, BottomNavigationAction, Button, Fab, Fade, makeStyles, Menu, MenuItem, StylesProvider } from "@material-ui/core";
 import MailIcon from '@material-ui/icons/Mail';
 import PersonIcon from '@material-ui/icons/Person';
 import HomeIcon from '@material-ui/icons/Home';
@@ -22,6 +22,7 @@ const MyNavigation = styled(BottomNavigation)`
   position: fixed;
   width: 100%;
   bottom: 0px;
+  height:60px;
   background-color: aliceblue;
 `;
 
@@ -74,6 +75,15 @@ const Test1Page = () => {
     margin: 20px;
   `;
 
+  const FixedAddButton = styled(Fab)`
+    position: sticky;
+    bottom: 70px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    float: right;
+  `;
+
   return (
     <>
       <StylesProvider injectFirst>
@@ -98,6 +108,10 @@ const Test1Page = () => {
             <IitleBadge />
           </TitleParentBadge>
         </HeaderDesign>
+
+        <FixedAddButton color="primary" aria-label="add">
+          <AddIcon />
+        </FixedAddButton>
 
         <MyNavigation value={value} onChange={handleChange}>
           <BottomNavigationAction label="Home" value="recents" icon={<HomeIcon />} />
