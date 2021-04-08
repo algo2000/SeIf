@@ -7,6 +7,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AddIcon from '@material-ui/icons/Add';
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
+import PlusIcon from "../icons/PlusIcon";
 
 const MyButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -108,6 +109,13 @@ const Test1Page = () => {
             <IitleBadge />
           </TitleParentBadge>
         </HeaderDesign>
+
+        <svg>
+            <path
+              fill='Yellow'
+              d={PlusIcon}
+            />
+          </svg>
 
         <FixedAddButton color="primary" aria-label="add">
           <AddIcon />
