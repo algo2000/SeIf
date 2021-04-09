@@ -6,6 +6,7 @@ import Textbox from '../components/textbox/Textbox'
 import Challenge from '../components/com/Challenge'
 import { Counter } from '../features/counter/Counter'
 import { TestSlick } from '../features/slick/TestSlick'
+import Sqaure from '../components/animation/ChangingSquare'
 
 const IndexPage = () => {
   const [value, setValue] = useState<string>("");
@@ -27,6 +28,7 @@ const IndexPage = () => {
       onChange={(val: string)=> setName(val)}
     />
     <Textbox/>
+    <Sqaure/>
     <br/><br/><br/>
     <Counter/>
     <TestSlick/>
